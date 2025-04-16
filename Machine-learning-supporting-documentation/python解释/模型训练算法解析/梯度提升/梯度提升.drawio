@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0" version="26.2.9">
+  <diagram name="第 1 页" id="50go7f0qgQY2vd9mPgj_">
+    <mxGraphModel dx="1215" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-1" value="开始" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-2" value="初始化模型：\n常数值预测（如均值）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="120" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-3" target="dSdC_yqx38VfiPNCcUNh-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-3" value="循环迭代（m=1到M）" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="220" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-4" value="计算伪残差：\nr = -梯度" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-5" target="dSdC_yqx38VfiPNCcUNh-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-5" value="用伪残差训练\n新决策树h_m(x)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-6" value="计算最优权重γ_m\n（线搜索）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-7" target="dSdC_yqx38VfiPNCcUNh-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-7" value="更新模型：\nF_m(x) = F_{m-1}(x) + ν·γ_m h_m(x)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="450" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-8" value="输出最终模型：\nF_M(x)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="640" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-1" target="dSdC_yqx38VfiPNCcUNh-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-2" target="dSdC_yqx38VfiPNCcUNh-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.25;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-3" target="dSdC_yqx38VfiPNCcUNh-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-4" target="dSdC_yqx38VfiPNCcUNh-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-5" target="dSdC_yqx38VfiPNCcUNh-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dSdC_yqx38VfiPNCcUNh-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="dSdC_yqx38VfiPNCcUNh-6" target="dSdC_yqx38VfiPNCcUNh-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,57 @@
+<mxfile host="debug996.com" modified="2025-04-09T01:45:49.544Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0" etag="dSuVsleyLMSPWU8XWW2s" version="15.0.3" type="device">
+  <diagram id="u4PpzWLhvUfCvl7kOjA3" name="第 1 页">
+    <mxGraphModel dx="686" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="数据点" value="数据点特征向量类别标签" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="292" y="30" width="58" height="58.400002" as="geometry" />
+        </mxCell>
+        <mxCell id="核函数" value="核函数类型参数" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="428.78" y="0.80000305" width="95" height="116.79999" as="geometry" />
+        </mxCell>
+        <mxCell id="E0" style="strokeWidth=2;" parent="1" source="数据点" target="核函数" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L0" value="映射（n:1）" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="E0" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="超平面" value="超平面方程权重" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="602.56" y="110" width="54" height="58.400002" as="geometry" />
+        </mxCell>
+        <mxCell id="E1" style="strokeWidth=2;" parent="1" source="核函数" target="超平面" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L1" value="优化（1:1）" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="E1" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="间隔" value="间隔宽度C值" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="735.32996" y="97.900002" width="54" height="82.599998" as="geometry" />
+        </mxCell>
+        <mxCell id="E2" style="strokeWidth=2;" parent="1" source="超平面" target="间隔" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L2" value="控制（1:1）" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="E2" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="支持向量" value="支持向量边界距离" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="447.28" y="135.39999" width="58" height="41.599998" as="geometry" />
+        </mxCell>
+        <mxCell id="E3" style="strokeWidth=2;" parent="1" source="支持向量" target="超平面" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L3" value="影响（n:1）" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="E3" vertex="1" connectable="0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

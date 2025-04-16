@@ -1,0 +1,43 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1208" dy="858" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8GUk_eAU9UdfTbfoE5NT-0" target="8GUk_eAU9UdfTbfoE5NT-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-0" value="用户上传文件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="50" y="180" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8GUk_eAU9UdfTbfoE5NT-1" target="8GUk_eAU9UdfTbfoE5NT-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-1" value="数据读取(read_data.py)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="240" y="180" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8GUk_eAU9UdfTbfoE5NT-3" target="8GUk_eAU9UdfTbfoE5NT-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-3" value="缺失值处理(missing_scale.py)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="430" y="180" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8GUk_eAU9UdfTbfoE5NT-5" target="8GUk_eAU9UdfTbfoE5NT-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-5" value="数据标准化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="620" y="180" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="8GUk_eAU9UdfTbfoE5NT-7" target="8GUk_eAU9UdfTbfoE5NT-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-7" value="模型训练(model..py)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="620" y="320" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8GUk_eAU9UdfTbfoE5NT-9" value="模型评估(model_analysis.py)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="430" y="320" width="110" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

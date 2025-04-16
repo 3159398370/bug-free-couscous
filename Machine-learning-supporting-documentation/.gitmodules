@@ -1,0 +1,6 @@
+[submodule "code/Machine-learning-supporting-documentation"]
+	path = code/Machine-learning-supporting-documentation
+	url = git@github.com:3159398370/Machine-learning-supporting-documentation.git
+[submodule "code/transportation_predict"]
+	path = code/transportation_predict
+	url = git@github.com:3159398370/transportation_predict.git

@@ -1,0 +1,63 @@
+server:
+  ip: localhost
+  port: 9090
+# 配置日志文件
+logging:
+  #config: classpath:logback.xml
+  config: classpath:logback-spring.xml
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/transportation_db?serverTimezone=GMT%2b8
+    username: root
+    password: 123456
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 1500MB
+      max-request-size: 1500MB
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #扫描所有mybatis的xml文件
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+files:
+  #头像地址
+  upload:
+    path: D:\video\files\
+
+  #上传的
+  trainFile:
+    path:  D:\video\data\train\
+
+  predictFile:
+    path:  D:\video\data\predictfile\
+
+    #python 解释器
+  pythonInterpreter:
+    path: C:\Users\a3159\AppData\Local\Programs\Python\Python39\python.exe
+
+    # 模型代码训练所在的位置
+  pythonTrianCode:
+    path:  H:\mach\transportation_predict_system\transportation_python\train_model_online.py
+
+  #模型代码预测代码所在问题
+  pythonPredictCode:
+    path: H:\mach\transportation_predict_system\transportation_python\predict_online.py
+
+    # 模型代码训练所在的位置
+  pythonAnalyzeCode:
+    path: H:\mach\transportation_predict_system\transportation_python\model_analysis.py
+
+  # 模型代码训练所在的位置
+  pythonEDAAnalyzeCode:
+    path: H:\mach\transportation_predict_system\transportation_python\EDA_analysis.py
+
+
