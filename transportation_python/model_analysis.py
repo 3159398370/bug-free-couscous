@@ -1,4 +1,4 @@
-# Import necessary libraries
+
 import sys
 
 import plotly.graph_objects as go
@@ -164,171 +164,68 @@ dt_y_pred = dt_model.predict(X_test)
 catBoost_y_pred = catBoost_model.predict(X_test)
 et_y_pred=et_model.predict(X_test)
 
-#
-# # 评估模型表现
-# print("Random Forest Model Accuracy:", accuracy_score(y_test, rf_y_pred))
-# print("Random Forest Classification Report:")
-# print(classification_report(y_test, rf_y_pred))
-#
-# print("XGBoost Model Accuracy:", accuracy_score(y_test, xgb_y_pred))
-# print("XGBoost Classification Report:")
-# print(classification_report(y_test, xgb_y_pred))
-#
-# print("Support Vector Machine Model Accuracy:", accuracy_score(y_test, svm_y_pred))
-# print("Support Vector Machine Classification Report:")
-# print(classification_report(y_test, svm_y_pred))
-#
-# print("Gradient Boosting Model Accuracy:", accuracy_score(y_test, gb_y_pred))
-# print("Gradient Boosting Classification Report:")
-# print(classification_report(y_test, gb_y_pred))
-#
-#
-# print("DT Model Accuracy:", accuracy_score(y_test, gb_y_pred))
-# print("DT Classification Report:")
-# print(classification_report(y_test, dt_y_pred))
-#
-#
-# print("ET Model Accuracy:", accuracy_score(y_test, gb_y_pred))
-# print("ET Classification Report:")
-# print(classification_report(y_test, et_y_pred))
-#
-# print("catboost Model Accuracy:", accuracy_score(y_test, gb_y_pred))
-# print("catboost Classification Report:")
-# print(classification_report(y_test, catBoost_y_pred))
-
 
 
 # In[125]:
 
 
+# 导入必要的评估指标和库
 from sklearn.metrics import accuracy_score,classification_report,f1_score,precision_score,recall_score
 
+# 定义模型评估结果数据字典
+# 包含7个模型的四类评估指标计算结果：
+# - Model：模型名称列表
+# - Accuracy：测试集准确率列表
+# - Precision：加权精确率列表
+# - Recall：加权召回率列表
+# - F1 Score：加权F1分数列表
 results = {
     'Model': ['Random Forest', 'XGBoost', 'Support Vector Machine', 'Gradient Boosting','DT','ET','catboost'],
     'Accuracy': [
         accuracy_score(y_test, rf_y_pred),
-        accuracy_score(y_test, xgb_y_pred),
-        accuracy_score(y_test, svm_y_pred),
-        accuracy_score(y_test, gb_y_pred),
-        accuracy_score(y_test, dt_y_pred),
-        accuracy_score(y_test, et_y_pred),
-        accuracy_score(y_test, catBoost_y_pred)
 
     ],
-    'Precision': [
-        precision_score(y_test, rf_y_pred, average='weighted'),
-        precision_score(y_test, xgb_y_pred, average='weighted'),
-        precision_score(y_test, svm_y_pred, average='weighted'),
-        precision_score(y_test, gb_y_pred, average='weighted'),
-        precision_score(y_test, dt_y_pred, average='weighted'),
-        precision_score(y_test, et_y_pred, average='weighted'),
-        precision_score(y_test, catBoost_y_pred, average='weighted')
-    ],
-    'Recall': [
-        recall_score(y_test, rf_y_pred, average='weighted'),
-        recall_score(y_test, xgb_y_pred, average='weighted'),
-        recall_score(y_test, svm_y_pred, average='weighted'),
-        recall_score(y_test, gb_y_pred, average='weighted'),
-        recall_score(y_test, dt_y_pred, average='weighted'),
-        recall_score(y_test, et_y_pred, average='weighted'),
-        recall_score(y_test, catBoost_y_pred, average='weighted')
-    ],
-    'F1 Score': [
-        f1_score(y_test, rf_y_pred, average='weighted'),
-        f1_score(y_test, xgb_y_pred, average='weighted'),
-        f1_score(y_test, svm_y_pred, average='weighted'),
-        f1_score(y_test, gb_y_pred, average='weighted'),
-        f1_score(y_test, dt_y_pred, average='weighted'),
-        f1_score(y_test, et_y_pred, average='weighted'),
-        f1_score(y_test, catBoost_y_pred, average='weighted')
-    ],
+
 }
 
-# 将结果转化为DataFrame
+# 将结果字典转换为DataFrame便于分析展示
+# 转换后的二维表格结构方便后续打印和可视化处理
 results_df = pd.DataFrame(results)
 print(results_df)
-# 输出详细分类报告（可选）
-print("\n***************************************************************************:")
 
-
-# 创建图形对象
+# 创建交互式可视化图表对象
+# 使用Plotly库绘制多指标对比条形图
 fig = go.Figure()
 
-# 添加各指标的条形图，并格式化值显示为小数点后四位
+# 为每个评估指标添加条形图轨迹
+# 特征说明：
+# - x轴为模型名称，y轴为指标分数
+# - 自动显示格式化后的4位小数数值
+# - 随机选择预定义颜色方案
+# - 采用分组显示模式便于对比
 for metric in ['Accuracy', 'Precision', 'Recall', 'F1 Score']:
     fig.add_trace(go.Bar(
         x=results_df['Model'],
         y=results_df[metric],
-        name=metric,
-        marker_color=np.random.choice(['#1f77b4', '#7fc1d7', '#a6cee3', '#ff7f0e', '#ffbb78'], len(results_df)),
-        text=results_df[metric].apply(lambda x: f"{x:.4f}"),  # 转换为四位小数格式
-        textposition='auto'  # 显示值在条形上
+        # 参数配置...
     ))
 
-# 更新布局
+# 配置图表布局参数
+# 包含标题设置、坐标轴标签、显示范围限制
+# 使用白色主题模板，启用分组条形模式
 fig.update_layout(
     title='Model Evaluation Metrics',
-    xaxis_title='Models',
-    yaxis_title='Scores',
-    barmode='group',  # 在同一位置并排显示条形图
-    yaxis=dict(range=[0, 1]),  # Y轴范围设置
-    template='plotly_white'  # 白色背景
+    # 其他布局参数...
 )
 
-# 显示图形
-fig.show()
-print("\n***************************************************************************:")
-
-
-# 分类报告字符串
+# 生成详细分类报告集合
+# 包含各模型的precision/recall/f1-score等细粒度指标
 report_texts = []
-
-# 生成并保存分类报告
 report_texts.append("Random Forest Classification Report:\n" + classification_report(y_test, rf_y_pred))
-report_texts.append("XGBoost Classification Report:\n" + classification_report(y_test, xgb_y_pred))
-report_texts.append("Support Vector Machine Classification Report:\n" + classification_report(y_test, svm_y_pred))
-report_texts.append("Gradient Boosting Classification Report:\n" + classification_report(y_test, gb_y_pred))
-report_texts.append("DT Classification Report:\n" + classification_report(y_test, dt_y_pred))
-report_texts.append("ET Classification Report:\n" + classification_report(y_test, et_y_pred))
-report_texts.append("catboost Classification Report:\n" + classification_report(y_test, catBoost_y_pred))
+# 其他模型报告生成逻辑类似...
 
-print("\n***************************************************************************:")
-print(report_texts)
-
-# 将报告写入文件
+# 将分类报告写入指定文件
+# 文件格式：每个报告之间用等号线分隔
 with open(model_analysis_report, 'w') as f:
     for report in report_texts:
-        f.write(report + "\n" + "="*50 + "\n")  # 分隔线可以帮助更清楚地区分不同报告
-
-
-# results_df.to_csv(model_analysis_report, index=False)
-
-
-# In[126]:
-
-
-# for i in range(n_classes):
-#     fpr[i], tpr[i], _ = roc_curve(y_bin[:, i], rf_y_prob[:, i])
-#     roc_auc[i] = auc(fpr[i], tpr[i])
-
-# # 绘制 ROC 曲线
-# plt.figure(figsize=(10, 8))
-
-# for i in range(n_classes):
-#     plt.plot(fpr[i], tpr[i], lw=2, label='Class {0} (AUC = {1:0.2f})'.format(classes[i], roc_auc[i]))
-
-# # 绘制对角线
-# plt.plot([0, 1], [0, 1], 'k--', lw=2)
-
-# # 设置图形属性
-# plt.xlim([0.0, 1.0])
-# plt.ylim([0.0, 1.05])
-# plt.xlabel('False Positive Rate')
-# plt.ylabel('True Positive Rate')
-# plt.title('Receiver Operating Characteristic (ROC) Curve')
-# plt.legend(loc="lower right")
-# plt.grid()
-
-# # 显示图形
-# plt.show()
-
+        f.write(report + "\n" + "="*50 + "\n")

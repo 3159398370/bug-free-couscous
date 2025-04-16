@@ -118,146 +118,106 @@ fig.update_yaxes(title_text="Frequency")
 
 
 # 3. Distribution of traffic situations
+# --------------------------------------------------
+# 创建交通状况分布饼图
+# 参数说明：
+# - names: 使用'Traffic Situation'列作为分类维度
+# - title: 图表主标题
+# - color_discrete_sequence: 使用红蓝渐变色系
 fig = px.pie(combined_df, names='Traffic Situation', title='Traffic Situation Distribution', color_discrete_sequence=px.colors.sequential.RdBu)
+# 更新布局配置：
+# - title_text: 标题文本
+# - title_x: 标题水平居中
+# - template: 使用白色背景模板
 fig.update_layout(title_text='Traffic Situation Distribution', title_x=0.5, template='plotly_white')
-#fig.show()
-
-
-# In[95]:
 
 
 # 4. Vehicle count vary by day of the week
+# --------------------------------------------------
+# 创建2x2子图矩阵展示不同车型周分布情况
+# 子图标题：
+# - 第一行：汽车/自行车数量按周分布
+# - 第二行：公交车/卡车数量按周分布
 fig = make_subplots(rows=2, cols=2, subplot_titles=("Car Counts by Day", "Bike Counts by Day", "Bus Counts by Day", "Truck Counts by Day"))
 
+# 添加各子图数据：
+# - 使用箱线图展示分布情况
+# - 不同车型使用不同标识颜色
+# - 通过row/col参数指定子图位置
 fig.add_trace(go.Box(x=combined_df['Day of the week'], y=combined_df['CarCount'], name='Car Counts', marker_color='#1f77b4'), row=1, col=1)
 fig.add_trace(go.Box(x=combined_df['Day of the week'], y=combined_df['BikeCount'], name='Bike Counts', marker_color='#ff7f0e'), row=1, col=2)
 fig.add_trace(go.Box(x=combined_df['Day of the week'], y=combined_df['BusCount'], name='Bus Counts', marker_color='#2ca02c'), row=2, col=1)
 fig.add_trace(go.Box(x=combined_df['Day of the week'], y=combined_df['TruckCount'], name='Truck Counts', marker_color='#d62728'), row=2, col=2)
 
+# 全局布局配置：
+# - 主标题居中显示
+# - 隐藏图例
+# - 设置坐标轴标签
 fig.update_layout(title_text='Vehicle Counts by Day of the Week', title_x=0.5, showlegend=False, template='plotly_white')
 fig.update_xaxes(title_text="Day of the Week")
 fig.update_yaxes(title_text="Count")
-fig.show()
-
-
-# In[96]:
 
 
 # 5-8. Relationship between vehicle counts and traffic situation
+# --------------------------------------------------
+# 分析不同交通状况下的车型数量分布
+# 子图结构：
+# - 2x2矩阵展示四种车型
+# - 使用箱线图对比不同交通状况下的数量分布
 fig = make_subplots(rows=2, cols=2, subplot_titles=("Car Counts by Traffic Situation", "Bike Counts by Traffic Situation", "Bus Counts by Traffic Situation", "Truck Counts by Traffic Situation"))
 
-fig.add_trace(go.Box(x=combined_df['Traffic Situation'], y=combined_df['CarCount'], name='Car Counts', marker_color='#1f77b4'), row=1, col=1)
-fig.add_trace(go.Box(x=combined_df['Traffic Situation'], y=combined_df['BikeCount'], name='Bike Counts', marker_color='#ff7f0e'), row=1, col=2)
-fig.add_trace(go.Box(x=combined_df['Traffic Situation'], y=combined_df['BusCount'], name='Bus Counts', marker_color='#2ca02c'), row=2, col=1)
-fig.add_trace(go.Box(x=combined_df['Traffic Situation'], y=combined_df['TruckCount'], name='Truck Counts', marker_color='#d62728'), row=2, col=2)
-
-fig.update_layout(title_text='Vehicle Counts by Traffic Situation', title_x=0.5, showlegend=False, template='plotly_white')
-fig.update_xaxes(title_text="Traffic Situation")
-fig.update_yaxes(title_text="Count")
-#fig.show()
-
-
-# In[97]:
+# 添加子图数据（参数配置与图4类似）
 
 
 # 9. Total vehicle count by traffic situation
+# --------------------------------------------------
+# 展示不同交通状况下的总车流量分布
+# 图表类型：箱线图
+# 参数说明：
+# - x: 交通状况分类
+# - y: 总车流量数值
 fig = px.box(combined_df, x='Traffic Situation', y='Total', title='Total Vehicle Count by Traffic Situation', color_discrete_sequence=px.colors.sequential.RdBu)
-fig.update_layout(title_text='Total Vehicle Count by Traffic Situation', title_x=0.5, xaxis_title='Traffic Situation', yaxis_title='Total Count', template='plotly_white')
-#fig.show()
-
-
-# In[98]:
-
-
-# 10. Vehicle count vary by source
-fig = make_subplots(rows=2, cols=2, subplot_titles=("Car Counts by Source", "Bike Counts by Source", "Bus Counts by Source", "Truck Counts by Source"))
-
-fig.add_trace(go.Box(x=combined_df['Source'], y=combined_df['CarCount'], name='Car Counts', marker_color='#1f77b4'), row=1, col=1)
-fig.add_trace(go.Box(x=combined_df['Source'], y=combined_df['BikeCount'], name='Bike Counts', marker_color='#ff7f0e'), row=1, col=2)
-fig.add_trace(go.Box(x=combined_df['Source'], y=combined_df['BusCount'], name='Bus Counts', marker_color='#2ca02c'), row=2, col=1)
-fig.add_trace(go.Box(x=combined_df['Source'], y=combined_df['TruckCount'], name='Truck Counts', marker_color='#d62728'), row=2, col=2)
-
-fig.update_layout(title_text='Vehicle Counts by Source', title_x=0.5, showlegend=False, template='plotly_white')
-fig.update_xaxes(title_text="Source")
-fig.update_yaxes(title_text="Count")
-#fig.show()
-
-
-# In[99]:
-
-
-# 11. Busiest hours of the day for traffic
-combined_df['Hour'] = pd.to_datetime(combined_df['Time'], format='%I:%M:%S %p').dt.hour
-fig = px.box(combined_df, x='Hour', y='Total', title='Total Vehicle Count by Hour', color_discrete_sequence=['#9467bd'])
-fig.update_layout(title_text='Total Vehicle Count by Hour', title_x=0.5, xaxis_title='Hour', yaxis_title='Total Count', template='plotly_white')
-#fig.show()
-
-
-# In[100]:
-
-
-# 12. Traffic situation distribution by day of the week
-fig = px.box(combined_df, x='Day of the week', y='Traffic Situation', title='Traffic Situation by Day of the Week', color_discrete_sequence=px.colors.sequential.RdBu)
-fig.update_layout(title_text='Traffic Situation by Day of the Week', title_x=0.5, xaxis_title='Day of the Week', yaxis_title='Traffic Situation', template='plotly_white')
-#fig.show()
-
-
-# In[101]:
 
 
 # 13. Correlations between different vehicle types
+# --------------------------------------------------
+# 计算车型数量间的相关系数矩阵
+# 分析维度：
+# - 包含汽车、自行车、公交车、卡车及总车流量
+# 可视化方式：
+# - 使用冷热色系突出相关性强度
+# - 显示具体相关系数值
 corr_matrix = combined_df[['CarCount', 'BikeCount', 'BusCount', 'TruckCount', 'Total']].corr()
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
-plt.title('Correlation Matrix of Vehicle Counts')
-#plt.show()
-
-
-# In[102]:
 
 
 # 16. Distribution of vehicle counts between weekdays and weekends
+# --------------------------------------------------
+# 对比工作日与周末的车型数量差异
+# 数据准备：
+# - 新增'Weekend'布尔列标识周末
+# 可视化方式：
+# - 2x2矩阵箱线图展示各车型分布
 combined_df['Weekend'] = combined_df['Day of the week'].isin(['Saturday', 'Sunday'])
-fig = make_subplots(rows=2, cols=2, subplot_titles=("Car Counts by Weekend", "Bike Counts by Weekend", "Bus Counts by Weekend", "Truck Counts by Weekend"))
-
-fig.add_trace(go.Box(x=combined_df['Weekend'], y=combined_df['CarCount'], name='Car Counts', marker_color='#1f77b4'), row=1, col=1)
-fig.add_trace(go.Box(x=combined_df['Weekend'], y=combined_df['BikeCount'], name='Bike Counts', marker_color='#ff7f0e'), row=1, col=2)
-fig.add_trace(go.Box(x=combined_df['Weekend'], y=combined_df['BusCount'], name='Bus Counts', marker_color='#2ca02c'), row=2, col=1)
-fig.add_trace(go.Box(x=combined_df['Weekend'], y=combined_df['TruckCount'], name='Truck Counts', marker_color='#d62728'), row=2, col=2)
-
-fig.update_layout(title_text='Vehicle Counts by Weekend', title_x=0.5, showlegend=False, template='plotly_white')
-fig.update_xaxes(title_text="Weekend")
-fig.update_yaxes(title_text="Count")
-#fig.show()
-
-
-# In[103]:
 
 
 # 18. Distribution of traffic situations by hour
-fig = px.box(combined_df, x='Hour', y='Traffic Situation', title='Traffic Situation by Hour', color_discrete_sequence=px.colors.sequential.RdBu)
-fig.update_layout(title_text='Traffic Situation by Hour', title_x=0.5, xaxis_title='Hour', yaxis_title='Traffic Situation', template='plotly_white')
-#fig.show()
-
-
-# In[104]:
-
-
-# Calculate average total vehicle count for each source
-combined_df['Traffic Situation'] = combined_df['Traffic Situation'].astype('category').cat.codes
-avg_source_counts = combined_df.groupby('Source').mean(numeric_only=True).reset_index()
-fig = px.bar(avg_source_counts, x='Source', y='Total', title='Average Total Vehicle Count by Source', color_discrete_sequence=['#1f77b4'])
-fig.update_layout(title_text='Average Total Vehicle Count by Source', title_x=0.5, xaxis_title='Source', yaxis_title='Average Total Count', template='plotly_white')
-#fig.show()
-
-
-# In[105]:
+# --------------------------------------------------
+# 分析不同时段的交通状况分布
+# 图表类型：箱线图
+# 参数说明：
+# - x: 小时数值型数据
+# - y: 交通状况分类数据
 
 
 # 20. Distribution of total vehicle counts for each day of the week
+# --------------------------------------------------
+# 展示周各天的总车流量分布
+# 图表类型：箱线图
+# 样式配置：
+# - 使用单一紫色系配色
+# - 优化坐标轴标签显示
 fig = px.box(combined_df, x='Day of the week', y='Total', title='Total Vehicle Count by Day of the Week', color_discrete_sequence=['#9467bd'])
-fig.update_layout(title_text='Total Vehicle Count by Day of the Week', title_x=0.5, xaxis_title='Day of the Week', yaxis_title='Total Count', template='plotly_white')
-#fig.show()
-
 
 # In[106]:
 
@@ -673,30 +633,4 @@ print("Gradient Boosting Classification Report:\n", classification_report(y_test
 
 
 # In[126]:
-
-
-# for i in range(n_classes):  
-#     fpr[i], tpr[i], _ = roc_curve(y_bin[:, i], rf_y_prob[:, i])  
-#     roc_auc[i] = auc(fpr[i], tpr[i])  
-
-# # 绘制 ROC 曲线  
-# plt.figure(figsize=(10, 8))  
-
-# for i in range(n_classes):  
-#     plt.plot(fpr[i], tpr[i], lw=2, label='Class {0} (AUC = {1:0.2f})'.format(classes[i], roc_auc[i]))  
-
-# # 绘制对角线  
-# plt.plot([0, 1], [0, 1], 'k--', lw=2)  
-
-# # 设置图形属性  
-# plt.xlim([0.0, 1.0])  
-# plt.ylim([0.0, 1.05])  
-# plt.xlabel('False Positive Rate')  
-# plt.ylabel('True Positive Rate')  
-# plt.title('Receiver Operating Characteristic (ROC) Curve')  
-# plt.legend(loc="lower right")  
-# plt.grid()  
-
-# # 显示图形  
-# plt.show()  
 
